@@ -21,14 +21,14 @@ class MyUnitTest  < Test::Unit::TestCase
 		@browser.manage.timeouts.implicit_wait=(10)
 		@login_page = LoginPage.new(@browser)
 		@login_page.login_with('vintoza@mail.ru', 't15kf856juyt489sp1')
-    end
+  end
     
-    def teardown
-       @browser.quit
-    end
+  def teardown
+    @browser.quit
+  end
 
-    def test_1
-     	text_expected = 'Моя Страница'
+  def test_1
+    text_expected = 'Моя Страница'
 	 	text_actual = @login_page.myprofile_element.text
 	 	assert_equal text_actual, text_expected, "#{text_expected} != #{text_actual}" 
 	end
