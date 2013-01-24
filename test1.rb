@@ -27,31 +27,33 @@ class MyUnitTest  < Test::Unit::TestCase
        @browser.quit
     end
 
-    def test_1	
-		text_expected = 'Моя Страница'
-		text_actual = @browser.find_element(:xpath => "//*[@id='myprofile']/span").text
-		assert_equal text_actual, text_expected, "#{text_expected} != #{text_actual}" 
+    def test_1
+     	text_expected = 'Моя Страница'
+	 	text_actual = @login_page.myprofile_element.text
+	 	assert_equal text_actual, text_expected, "#{text_expected} != #{text_actual}" 
 	end
 
 	def test_2
-		@browser.find_element(:xpath => "//*[@id='l_fr']/a/span[2]").click
+		@friends_page = FriendPage.new(@browser)
+		@friends_page.friend_button_element.click
 		text_expected = 'У Вас 2 друга'
-		text_actual = @browser.find_element(:xpath => "//*[@id='friends_summary']").text
+		text_actual = @friends_page.friend_summary_element.text
 		assert_equal text_actual, text_expected, "#{text_expected} != #{text_actual}"
 	end
 
 	def test_3
-		@browser.find_element(:xpath => "//*[@id='l_msg']/a/span[2]").click
-		value_expected = '6 диалогов'
-		value_actual = @browser.find_element(:xpath => "//*[@id='im_dialogs_summary']/div").text
-		assert_equal value_actual, value_expected, "#{value_expected} != #{value_actual}"
+		@message_page = MessagePage.new(@browser)
+		@message_page.message_button_element.click
+		text_expected = '6 диалогов'
+		text_actual = @message_page.dialogs_summary_element.text
+		assert_equal text_actual, text_expected, "#{text_expected} != #{text_actual}"
 	end
 
 	def test_4
-		@browser.find_element(:xpath => "//*[@id='l_msg']/a/span[2]").click
-		value_expected = true
-		value_actual = @browser.find_element(:xpath => "//*[@id='tab_conversation']/a/b[3]").displayed?
-		assert_equal value_actual, value_expected, "#{value_expected} != #{value_actual}"
+		@message_page = MessagePage.new(@browser)
+		@message_page.message_button_element.click
+		text_expected = true
+	 	text_actual = @message_page.write_message?
+	 	assert_equal text_actual, text_expected, "#{text_expected} != #{text_actual}"
 	end
 end
-
