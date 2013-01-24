@@ -7,9 +7,9 @@ class LoginPage
 	span(:myprofile, :xpath => "//*[@id='myprofile']/span")
 
 	def login_with(email, pass)
-    	self.email = email
-    	self.pass = pass
-    	login
+    self.email = email
+    self.pass = pass
+    login
 	end
 end
 
@@ -27,7 +27,7 @@ class MessagePage
 
 	span(:message_button, :xpath => "//*[@id='l_msg']/a/span[2]")
 	div(:dialogs_summary, :xpath => "//*[@id='im_dialogs_summary']/div")
-	
+
 	button(:write_message, :xpath => "//*[@id='im_search_btn']")
 	expected_element(:write_message, 10)
 end
