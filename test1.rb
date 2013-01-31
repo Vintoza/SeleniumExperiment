@@ -3,8 +3,8 @@ require "rubygems"
 require 'test/unit'
 require "selenium-webdriver"
 require "page-object"
-require "pages.rb"
-
+require "/../../pages/*.rb"
+#/../../pages/*.rb
 
 class MyUnitTest  < Test::Unit::TestCase
 
@@ -20,7 +20,7 @@ class MyUnitTest  < Test::Unit::TestCase
     @browser.navigate.to "http://vk.com"
     @browser.manage.timeouts.implicit_wait=(10)
     @login_page = LoginPage.new(@browser)
-    @login_page.login_with('vintoza@mail.ru', 't15kf856juyt489sp1')
+    @login_page.login_with('vintoza@mail.ru', 't15kf856j')
   end
     
   def teardown
@@ -44,8 +44,8 @@ class MyUnitTest  < Test::Unit::TestCase
   def test_3
     @message_page = MessagePage.new(@browser)
     @message_page.message_button_element.click
-    text_expected = '6 диалогов'
-    text_actual = @message_page.dialogs_summary_element.text
+    text_expected = true
+    text_actual = @message_page.non_message?
     assert_equal text_actual, text_expected, "#{text_expected} != #{text_actual}"
   end
 
