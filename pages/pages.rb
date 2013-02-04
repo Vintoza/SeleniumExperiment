@@ -26,8 +26,15 @@ class MessagePage
   include PageObject
 
   span(:message_button, :xpath => "//*[@id='l_msg']/a/span[2]")
-  div(:non_message, :xpath => "//*[@id='im_rows_none']")
+  div(:none_message_text, :xpath => "//*[@id='im_rows_none']")
 
   button(:write_message, :xpath => "//*[@id='im_search_btn']")
   expected_element(:write_message, 10)
+end
+
+class SettingsPage
+  include PageObject
+
+  span(:document_button, :xpath => "//*[@id='l_set']/a/span[2]")
+  div(:document, :xpath => "//*[@id='settings_services']/div[10]/div[2]")
 end

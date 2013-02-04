@@ -13,7 +13,10 @@ When /^I go to "([^"]*)"$/ do |page|
   if page == "friend list"
     friends_page = FriendPage.new(@browser)
     friends_page.friend_button_element.click
-  elsif page == "message list"
+  elsif page == "settings list"
+    settings_page = SettingsPage.new(@browser)
+    settings_page.document_button_element.click
+  else
     message_page = MessagePage.new(@browser)
     message_page.message_button_element.click
   end
@@ -37,7 +40,7 @@ Then /^I know an element "([^"]*)" are displayed$/ do |element|
   text_expected = true
   message_page = MessagePage.new(@browser)
   if element == "im rows none"
-    text_actual = message_page.non_message?
+    text_actual = message_page.none_message_text?
   elsif element == "write message"
     text_actual = message_page.write_message?
   else
@@ -45,3 +48,5 @@ Then /^I know an element "([^"]*)" are displayed$/ do |element|
   end
   assert_equal text_expected, text_actual, "#{text_expected} != #{text_actual}"
 end
+
+d

@@ -18,3 +18,8 @@ Scenario: Seach an element "non message"
 Scenario: Seach a button "write message"
   When I go to "message list"
   Then I know an element "write message" are displayed
+
+Scenario: Verification of documents checkbox
+  When I go to "settings list"
+  And I checking "checkdoc"
+  Then I verificate that checkbox is "checked"
