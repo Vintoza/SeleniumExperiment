@@ -49,4 +49,19 @@ Then /^I know an element "([^"]*)" are displayed$/ do |element|
   assert_equal text_expected, text_actual, "#{text_expected} != #{text_actual}"
 end
 
-d
+When /^I checking "([^"]*)"$/ do |document|
+  if document == "checkdoc"
+    @settings_page = SettingsPage.new(@browser)
+    @settings_page.document_element.click
+  end
+end
+
+Then /^I verificate that checkbox is "([^"]*)"$/ do |chek|
+  if chek == "checked"
+    text_actual = @settings_page.document_element.attribute("class").include? " on"
+  else
+    text_actual = nil
+  end
+  text_expected = true
+  assert_equal text_expected, text_actual, "#{text_expected} != #{text_actual}"
+end
