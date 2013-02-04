@@ -24,6 +24,7 @@ end
 
 Then /^I know that text in element "([^"]*)" should be = "([^"]*)"$/ do |element, text|
   text_expected = text
+
   if element == "friends_summary"
     friends_page = FriendPage.new(@browser)
     text_actual = friends_page.friend_summary_element.text
@@ -33,12 +34,14 @@ Then /^I know that text in element "([^"]*)" should be = "([^"]*)"$/ do |element
   else
     text_actual = nil
   end
+
   assert_equal text_expected, text_actual, "#{text_expected} != #{text_actual}"
 end
 
 Then /^I know an element "([^"]*)" are displayed$/ do |element|
   text_expected = true
   message_page = MessagePage.new(@browser)
+
   if element == "im rows none"
     text_actual = message_page.none_message_text?
   elsif element == "write message"
@@ -46,6 +49,7 @@ Then /^I know an element "([^"]*)" are displayed$/ do |element|
   else
     text_actual = nil
   end
+
   assert_equal text_expected, text_actual, "#{text_expected} != #{text_actual}"
 end
 
@@ -62,6 +66,7 @@ Then /^I verificate that checkbox is "([^"]*)"$/ do |chek|
   else
     text_actual = nil
   end
+
   text_expected = true
   assert_equal text_expected, text_actual, "#{text_expected} != #{text_actual}"
 end

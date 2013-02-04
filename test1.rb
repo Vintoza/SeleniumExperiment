@@ -3,7 +3,7 @@ require "rubygems"
 require 'test/unit'
 require "selenium-webdriver"
 require "page-object"
-require "/../../pages/*.rb"
+require "/pages/*.rb"
 #/../../pages/*.rb
 
 class MyUnitTest  < Test::Unit::TestCase
@@ -11,7 +11,7 @@ class MyUnitTest  < Test::Unit::TestCase
   def login(name, password)
     @browser.find_element(:xpath => "//*[@id='quick_email']").send_keys name
     @browser.find_element(:xpath => "//*[@id='quick_pass']").send_keys password
-    @browser.find_element(:xpath => "//*[@id='quick_login_button']").click    
+    @browser.find_element(:xpath => "//*[@id='quick_login_button']").click
   end
 
   def setup
@@ -22,7 +22,7 @@ class MyUnitTest  < Test::Unit::TestCase
     @login_page = LoginPage.new(@browser)
     @login_page.login_with('vintoza@mail.ru', 't15kf856j')
   end
-    
+
   def teardown
     @browser.quit
   end
@@ -30,7 +30,7 @@ class MyUnitTest  < Test::Unit::TestCase
   def test_1
     text_expected = 'Моя Страница'
     text_actual = @login_page.myprofile_element.text
-    assert_equal text_actual, text_expected, "#{text_expected} != #{text_actual}" 
+    assert_equal text_actual, text_expected, "#{text_expected} != #{text_actual}"
   end
 
   def test_2
